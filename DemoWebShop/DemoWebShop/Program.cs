@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DemoWebShop.Areas.Identity.Data;
 using DemoWebShop.Data;
@@ -9,12 +9,15 @@ namespace DemoWebShop
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-                        var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+            // Dohvat connection stringa
+                        var connectionString = builder.Configuration.GetConnectionString("Default") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
-                                    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            // Servis za kreiranje resursa objekta klase konteksta / DI - ovo dolje će kreirati resurs - gdje se nalazi connectionstring
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-                                                builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //  Servis koji naglašava da je klasa ApplicationUser glavna  za identifikaciju korisnika / DI - instanciranje objekta korisnika - za prijavu
+                builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add services to the container.
