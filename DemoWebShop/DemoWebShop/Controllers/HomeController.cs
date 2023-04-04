@@ -1,9 +1,11 @@
 ﻿using DemoWebShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace DemoWebShop.Controllers
 {
+    // [Authorize] - atribut koji se primjenjuje na cijeli kontroler ili određene akcije, za zaključani pristup
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

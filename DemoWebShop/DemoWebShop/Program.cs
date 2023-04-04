@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DemoWebShop.Areas.Identity.Data;
-using DemoWebShop.Data;
+using DemoWebshop.Data;
+
 namespace DemoWebShop
 {
     public class Program
@@ -18,6 +19,7 @@ namespace DemoWebShop
 
             //  Servis koji naglašava da je klasa ApplicationUser glavna  za identifikaciju korisnika / DI - instanciranje objekta korisnika - za prijavu
                 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add services to the container.
@@ -42,6 +44,12 @@ namespace DemoWebShop
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.MapAreaControllerRoute(
+                name: "Admin",
+                areaName: "Admin",
+                pattern: "admin/{controller}/{action}/{id?}"
+                );
 
             app.MapControllerRoute(
                 name: "default",
