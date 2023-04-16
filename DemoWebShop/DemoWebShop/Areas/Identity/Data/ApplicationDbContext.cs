@@ -3,6 +3,7 @@ using DemoWebShop.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Security.Policy;
 
 namespace DemoWebshop.Data;
@@ -34,27 +35,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // Seeding za Kategorije
         List<Category> mainCategories = new List<Category>()
         {
-            new Category() { Id = 1, Title = "Milk" },
-            new Category() { Id = 2, Title = "Domestic" },
-            new Category() { Id = 3, Title = "Protein food" },
-            new Category() { Id = 4, Title = "Pets" },
-            new Category() { Id = 5, Title = "Jewellery" },
-        };
+            new Category() { Id = 1, Title = "Mliječni proizvodi" },
+            new Category() { Id = 2, Title = "Domaći proizvodi" },
+            new Category() { Id = 3, Title = "Proteinska hrana" },
+            new Category() { Id = 4, Title = "Hrana za kućne ljubimce" },
+            new Category() { Id = 5, Title = "Nakit" },
 
+        };
+        
         builder.Entity<Category>().HasData(mainCategories);
+ 
 
-
-        // Seeding za proizvode
-        List<Product> mainProducts = new List<Product>()
-        {
-            new Product() { Id = 101, Title = "Yogurtos", Description = "High in protein", Sku = "S006", InStock = 30, Price = 6.90M},
-            new Product() { Id = 102, Title = "Almie", Description = "Halves", Sku = "S009", InStock = 40, Price = 3.90M},
-            new Product() { Id = 103, Title = "Light", Description = "wink wink", Sku = "S206", InStock = 50, Price = 1.90M},
-            new Product() { Id = 104, Title = "Meat", Description = "Diet", Sku = "S906", InStock = 20, Price = 22.90M},
-            new Product() { Id = 105, Title = "Rings", Description = "Chick and classy look", Sku = "S216", InStock = 50, Price = 70.90M}
-        };
-
-        builder.Entity<Product>().HasData(mainProducts);
 
         // Postavke za seedanje uloga (eng.: roles) i glavnog administratora
 
@@ -112,5 +103,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 RoleId = adminRoleId
             }
         );
+
+        List<Product> mainProducts = new List<Product>()
+        {
+            new Product() { Id = 101, Title = "Yogurtos", Description = "High in protein", Sku = "S006", InStock = 30, Price = 6.90M},
+            new Product() { Id = 102, Title = "Almie", Description = "Halves", Sku = "S009", InStock = 40, Price = 3.90M},
+            new Product() { Id = 103, Title = "Light", Description = "wink wink", Sku = "S206", InStock = 50, Price = 1.90M},
+            new Product() { Id = 104, Title = "Meat", Description = "Diet", Sku = "S906", InStock = 20, Price = 22.90M},
+            new Product() { Id = 105, Title = "Rings", Description = "Chick and classy look", Sku = "S216", InStock = 50, Price = 70.90M}
+        };
+        builder.Entity<Product>().HasData(mainProducts);
+
     }
 }

@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using DemoWebShop.Areas.Identity.Data;
 using DemoWebshop.Data;
+using System.Globalization;
 
 namespace DemoWebShop
 {
@@ -22,6 +23,21 @@ namespace DemoWebShop
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            builder.Services.Configure<IdentityOptions>(
+                options =>
+                {
+                    // Osnovne postavke za lozinku (samo za vježbu)
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 7;
+                }
+
+
+                );
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
@@ -40,6 +56,21 @@ namespace DemoWebShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            // Postavke aplikacije za rukovanje decimalnim vrijednostima
+            var ci = new CultureInfo("de-De");
+
+            ci.NumberFormat.NumberDecimalSeparator = ".";
+            ci.NumberFormat.CurrencyDecimalSeparator = ".";
+
+            app.UseRequestLocalization(
+                new RequestLocalizationOptions
+                {
+                    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(ci),
+                    SupportedCultures = new List<CultureInfo> { ci },
+                    SupportedUICultures = new List<CultureInfo> { ci }
+                }
+                );
+
             app.UseRouting();
             app.UseAuthentication();
 
@@ -49,7 +80,7 @@ namespace DemoWebShop
                 name: "Admin",
                 areaName: "Admin",
                 pattern: "admin/{controller}/{action}/{id?}"
-                );
+            );
 
             app.MapControllerRoute(
                 name: "default",

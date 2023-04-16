@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoWebShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230404163008_def")]
-    partial class def
+    [Migration("20230405160827_SeedProductTable")]
+    partial class SeedProductTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,6 +102,27 @@ namespace DemoWebShop.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "66412151-dd0c-4b69-82c8-0f4256e78f00",
+                            AccessFailedCount = 0,
+                            Address = "Stara Cesta bb",
+                            ConcurrencyStamp = "e609842a-b15c-4c2a-b502-965bfb40f545",
+                            Email = "mico@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Mićo",
+                            LastName = "Programerić",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MICO@ADMIN.COM",
+                            NormalizedUserName = "MICO@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPOv+/X1QbOIlpWTLlowsksmnRGxsU0XK5MBrTr+m4r0n1yQHRtYHRbLEUhmzmYCnw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "de788cc1-6788-4881-8286-6e06971d9bf8",
+                            TwoFactorEnabled = false,
+                            UserName = "mico@admin.com"
+                        });
                 });
 
             modelBuilder.Entity("DemoWebShop.Models.Category", b =>
@@ -114,6 +135,9 @@ namespace DemoWebShop.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("ntext");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -348,14 +372,14 @@ namespace DemoWebShop.Migrations
                         new
                         {
                             Id = "6217999e-a9fb-448b-b163-e2305fc44f50",
-                            ConcurrencyStamp = "70d761d1-c12c-4070-9402-ea62a335e0e2",
+                            ConcurrencyStamp = "17407afb-db55-409e-a9f7-448322dc3049",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "0e71d461-63e3-4aa5-be93-d701a5a1f913",
-                            ConcurrencyStamp = "188951f0-9561-41e7-8b64-dac97ad60e8e",
+                            ConcurrencyStamp = "07f19f8f-b695-4abb-afcf-9d0d53ad0ad4",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -448,6 +472,13 @@ namespace DemoWebShop.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "66412151-dd0c-4b69-82c8-0f4256e78f00",
+                            RoleId = "6217999e-a9fb-448b-b163-e2305fc44f50"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

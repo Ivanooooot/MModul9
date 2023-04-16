@@ -107,7 +107,7 @@ namespace DemoWebShop.Migrations
                             Id = "66412151-dd0c-4b69-82c8-0f4256e78f00",
                             AccessFailedCount = 0,
                             Address = "Stara Cesta bb",
-                            ConcurrencyStamp = "c02cc838-ad96-4e63-90f4-17b2a8a2f311",
+                            ConcurrencyStamp = "57917328-1dba-4f3c-83d4-0fff362a4931",
                             Email = "mico@admin.com",
                             EmailConfirmed = false,
                             FirstName = "Mićo",
@@ -115,9 +115,9 @@ namespace DemoWebShop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MICO@ADMIN.COM",
                             NormalizedUserName = "MICO@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE11qU5QYMNGTRwamJN5UwdYETyXcRJw54PnwwxzA/TtXghYgbfjEe6IpzEHF/RKow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGv+tRCPox2OS0L2lkcTaZ29hpL3PrTQkHdOlLHmIDcJWKHeN/kt/7YGPEhXdU6svA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a30c085b-69e9-4190-90e0-018590cbd2a0",
+                            SecurityStamp = "843f7d19-67bc-461f-ad37-af8cfc96e9c7",
                             TwoFactorEnabled = false,
                             UserName = "mico@admin.com"
                         });
@@ -134,6 +134,9 @@ namespace DemoWebShop.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("ntext");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -147,27 +150,27 @@ namespace DemoWebShop.Migrations
                         new
                         {
                             Id = 1,
-                            Title = "Milk"
+                            Title = "Mliječni proizvodi"
                         },
                         new
                         {
                             Id = 2,
-                            Title = "Domestic"
+                            Title = "Domaći proizvodi"
                         },
                         new
                         {
                             Id = 3,
-                            Title = "Protein food"
+                            Title = "Proteinska hrana"
                         },
                         new
                         {
                             Id = 4,
-                            Title = "Pets"
+                            Title = "Hrana za kiućne ljubimce"
                         },
                         new
                         {
                             Id = 5,
-                            Title = "Jewellery"
+                            Title = "Nakit"
                         });
                 });
 
@@ -367,14 +370,14 @@ namespace DemoWebShop.Migrations
                         new
                         {
                             Id = "6217999e-a9fb-448b-b163-e2305fc44f50",
-                            ConcurrencyStamp = "79c05017-c3fb-4b18-8494-b96a929364d3",
+                            ConcurrencyStamp = "2d5f1075-233d-41ca-8d41-d85afa509782",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "0e71d461-63e3-4aa5-be93-d701a5a1f913",
-                            ConcurrencyStamp = "6e7a3434-0cc1-4380-9c00-afea6f122449",
+                            ConcurrencyStamp = "ec51115c-3cd8-41fc-86ec-97333545c201",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
